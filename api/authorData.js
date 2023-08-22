@@ -3,8 +3,8 @@ import client from '../utils/client';
 const endpoint = client.databaseURL;
 
 // FIXME:  GET ALL AUTHORS
-const getAuthors = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/books.json`, {
+const getAuthors = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors/${firebaseKey}.json`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'

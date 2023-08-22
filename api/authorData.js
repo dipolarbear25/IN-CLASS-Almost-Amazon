@@ -14,8 +14,6 @@ const getAuthors = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-
-
 // FIXME: CREATE AUTHOR
 const createAuthor = () => {};
 

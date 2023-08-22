@@ -1,10 +1,19 @@
-// import client from '../utils/client';
+import client from '../utils/client';
 // API CALLS FOR BOOKS
 
-// const endpoint = client.databaseURL;
+const endpoint = client.databaseURL;
 
 // TODO: GET BOOKS
-const getBooks = () => {};
+const getBooks = () => new promsie((resolve, reject) => {
+  fetch(endpoint), {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+  .then(resolve)
+  .then(reject)
+});
 
 // TODO: DELETE BOOK
 const deleteBook = () => {};

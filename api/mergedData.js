@@ -1,17 +1,18 @@
-import { getAuthorBooks } from "./authorData";
-import { getSingleBook, getSingleAuthor } from "./bookData";
+import { getAuthorBooks, getSingleAuthor } from './authorData';
+import { getSingleBook } from './bookData';
 
 const getBookDetails = (firebaseKey) => new Promise((resolve, reject) => {
-    getSingleBook(firebaseKey).then((bookObj) => {
-      getSingleAuthor(bookObj.author_id)
-        .then((authorObj) => resolve({ ...bookObj, authorObj }));
-    }).catch(reject);
-  });
+  getSingleBook(firebaseKey).then((bookObj) => {
+    getSingleAuthor(bookObj.author_id).then((authorObject) => {
+      resolve({ ...bookObj, authorObject });
+    });
+  }).catch(reject);
+});
 
-const getAuthorDetails = (firebaseKey) => new Promise((resolve, reject) => {
-  getSingleAuthor(firebaseKey).then((authorObj) => {
-    getAuthorBooks(authorObj.firebaseKey)
-  })
-})
+const getAuthorDetails = async (firebaseKey) => {
+  const author = await getSingleAuthor(firebaseKey);
+  const books = await getAuthorBooks(author.firebaseKey);
 
-  export {getBookDetails, getAuthorDetails}
+  return { ...author, books };
+};
+export { getBookDetails, getAuthorDetails };

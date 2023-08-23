@@ -46,7 +46,7 @@ const domEvents = () => {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         const [, firebaseKey] = e.target.id.split('--');
-      deleteSingleAuthor(firebaseKey).then(getAuthors).then(showAuthors);
+        deleteSingleAuthor(firebaseKey).then(getAuthors).then(showAuthors);
       }
     }
 

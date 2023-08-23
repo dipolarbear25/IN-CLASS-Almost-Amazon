@@ -1,5 +1,5 @@
-import { createBook, getBooks, updateBook } from "../api/bookData";
-import { showBooks } from "../pages/books";
+import { createBook, getBooks, updateBook } from '../api/bookData';
+import { showBooks } from '../pages/books';
 
 const formEvents = () => {
   document.querySelector('#main-container').addEventListener('submit', (e) => {

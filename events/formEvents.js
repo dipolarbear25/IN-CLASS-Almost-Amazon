@@ -1,3 +1,6 @@
+import { createBook, getBooks, updateBook } from "../api/bookData";
+import { showBooks } from "../pages/books";
+
 const formEvents = () => {
   document.querySelector('#main-container').addEventListener('submit', (e) => {
     e.preventDefault();
@@ -11,16 +14,13 @@ const formEvents = () => {
         author_id: document.querySelector('#author_id').value,
         sale: document.querySelector('#sale').checked,
       };
-    
       createBook(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-    
         updateBook(patchPayload).then(() => {
           getBooks().then(showBooks);
         });
       });
     }
-
     // TODO: CLICK EVENT FOR EDITING A BOOK
     if (e.target.id.includes('update-book')) {
       const [, firebaseKey] = e.target.id.split('--');
@@ -33,12 +33,10 @@ const formEvents = () => {
         sale: document.querySelector('#sale').checked,
         firebaseKey,
       };
-    
       updateBook(payload).then(() => {
         getBooks().then(showBooks);
       });
     }
-
     // FIXME: ADD CLICK EVENT FOR SUBMITTING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('submit-author')) {
       console.warn('CLICKED SUBMIT AUTHOR');

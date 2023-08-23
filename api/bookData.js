@@ -1,5 +1,5 @@
 import client from '../utils/client';
-import formEvents from '../events/formEvents';
+
 // API CALLS FOR BOOKS
 
 const endpoint = client.databaseURL;
@@ -29,7 +29,16 @@ const deleteBook = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 // TODO: GET SINGLE BOOK
-const getSingleBook = () => {};
+const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/authors/${firebaseKey}.json`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  }).then((response) => response.json())
+    .then((data) => resolve(Object.values(data)))
+    .catch(reject);
+});
 
 // TODO: CREATE BOOK
 const createBook = (payload) => new Promise((resolve, reject) => {
@@ -80,5 +89,5 @@ export {
   deleteBook,
   getSingleBook,
   updateBook,
-  formEvents
+  
 };

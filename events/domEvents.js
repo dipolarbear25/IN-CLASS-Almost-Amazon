@@ -1,9 +1,9 @@
 import { getAuthors, getSingleAuthor } from '../api/authorData';
 import { deleteBook, getBooks, getSingleBook } from '../api/bookData';
-import { getAuthorDetails, getBookDetails, deleteBookRelationships } from '../api/mergedData';
+import { getAuthorDetails, getBookDetails, deleteAuthorBookRelationships } from '../api/mergedData';
 import addAuthorForm from '../components/forms/addAuthorForm';
 import addBookForm from '../components/forms/addBookForm';
-import { showAuthors } from '../pages/authors';
+import { showAuthors, emptyAuthors } from '../pages/authors';
 import { showBooks } from '../pages/books';
 import viewAuthor from '../pages/viewAuthor';
 import viewBook from '../pages/viewBook';
@@ -46,7 +46,7 @@ const domEvents = (user) => {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         const [, firebaseKey] = e.target.id.split('--');
-        deleteAuthorBooksRelationship(firebaseKey).then(() => {
+        deleteAuthorBookRelationships(firebaseKey).then(() => {
           getAuthors(user.uid).then((array) => {
             if (array.length) {
               showAuthors(array);
@@ -54,8 +54,8 @@ const domEvents = (user) => {
               emptyAuthors();
             }
           });
-      })
-    }
+        });
+      }
     }
     // FIXME: ADD CLICK EVENT FOR SHOWING FORM FOR ADDING AN AUTHOR
     if (e.target.id.includes('add-author-btn')) {

@@ -2,7 +2,7 @@ import { signOut } from '../utils/auth';
 import { booksOnSale, getBooks, searchBooks } from '../api/bookData';
 import { emptyBooks, showBooks } from '../pages/books';
 import { getAuthors, getFavoriteAuthors } from '../api/authorData';
-import { showAuthors } from '../pages/authors';
+import { showAuthors, emptyAuthors } from '../pages/authors';
 // navigation events
 const navigationEvents = (user) => {
   // LOGOUT BUTTON
@@ -17,12 +17,12 @@ const navigationEvents = (user) => {
   // TODO: ALL BOOKS
   document.querySelector('#all-books').addEventListener('click', () => {
     getBooks(user.uid).then((array) => {
-      if(array.length) {
+      if (array.length) {
         showBooks(array);
       } else {
         emptyBooks();
       }
-    })
+    });
   });
 
   // FIXME: STUDENTS Create an event listener for the Authors

@@ -11,11 +11,15 @@ import viewBook from '../pages/viewBook';
 
 const domEvents = (user) => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
+    // selects that main container of the page, listens for a click
     // TODO: CLICK EVENT FOR DELETING A BOOK
     if (e.target.id.includes('delete-book')) {
+      // then it says "if the target of that click has an id that includes, 'delete-book'"
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
-        const [, firebaseKey] = e.target.id.split('--');
+        //when user clicks the button with the id of delete-book, a window pops up that double checks with the user.
+        https://docs.google.com/presentation/d/1-vkgLbajnqkyPdyBBjpW7heyBkg-P23vMOMnLJn8CfQ/edit#slide=id.g259a487837b_0_0 = e.target.id.split('--');
+        // if the user says yes, we make an array 
         deleteBook(firebaseKey).then(getBooks).then(showBooks);
       }
     }

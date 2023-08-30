@@ -9,7 +9,7 @@ const domBuilder = () => {
     <div id="store"></div>
     <div id="view"></div>
   </div>`;
-
+  //            app now have all of the div's above put into it, navigation is seperatted because it's going to stay on top of the page.
   renderToDOM('#app', domString);
 };
 

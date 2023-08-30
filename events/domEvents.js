@@ -18,7 +18,7 @@ const domEvents = (user) => {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         //when user clicks the button with the id of delete-book, a window pops up that double checks with the user.
-        const [, firebaseKey] = e.target.id.split('--');
+        const [, firebaseKey = e.target.id.split('--');
         // if the user says yes, we make an array 
         deleteBook(firebaseKey).then(getBooks).then(showBooks);
       }
